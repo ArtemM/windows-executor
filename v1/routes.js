@@ -6,6 +6,7 @@ var App = require("../core");
 var _ =  require("underscore");
 var errorHandling = require("./errorHandling");
 var tokens = require("../tokens");
+var actoins = require("./actions");
 var config = require("../config").v1;
 
 module.exports = function() {
@@ -81,6 +82,10 @@ module.exports = function() {
 		});
 	});
 
+	App.Express.get("/:version/sleep", validateToken, function (req, res) {
+		actoins.sleep();
+		res.send("{ok}");
+	});
 	/**
 	 * @api {get} /employees/:employeeId Get employee by ID
 	 * @apiVersion 1.0.0
